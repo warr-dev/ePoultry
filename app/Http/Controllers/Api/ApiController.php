@@ -39,7 +39,7 @@ class ApiController extends Controller
     {
         // dd($request->all());
         $conf=WaterConf::first();
-        $conf->update($request->all());
+        $conf->update(array_merge($request->all(),['mode'=>'run']));
         return response()->json([
             'status'=>'success'
         ]);
