@@ -19,8 +19,16 @@
           <span class="menu-title">Feeding</span>
         </a>
       </li>
+      
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('water')}}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title">Water</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('light')}}">
           <i class="icon-grid menu-icon"></i>
           <span class="menu-title">Light</span>
         </a>

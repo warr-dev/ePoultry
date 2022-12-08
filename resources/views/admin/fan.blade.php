@@ -2,5 +2,5 @@
 
 
 @section('content')
-    Dashboard
+    fan
 @endsection

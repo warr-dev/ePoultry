@@ -22,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/check',[ApiController::class,'check']);
+Route::get('/checkmode',[ApiController::class,'checkmode']);
+Route::get('/setmode',[ApiController::class,'setmode']);

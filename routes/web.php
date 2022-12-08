@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedingController;
+use App\Http\Controllers\WaterController;
+use App\Http\Controllers\LightController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +26,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/feeding', [FeedingController::class,'create'])->name('feeding.addtime');
     Route::delete('/feeding/{id}', [FeedingController::class,'destroy'])->name('feeding.delete');
 
-    // Route::get('/light', [DashboardController::class,'light'])->name('light');
+    Route::get('/light', [LightController::class,'index'])->name('light');
+    Route::get('/water', [WaterController::class,'index'])->name('water');
+    Route::get('/settingup', [WaterController::class,'setup'])->name('water.settank');
+    Route::put('/water', [WaterController::class,'update'])->name('water.update');
+
     // Route::get('/fan', [DashboardController::class,'fan'])->name('fan');
 });
 

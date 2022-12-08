@@ -2,5 +2,5 @@
 
 
 @section('content')
-    Dashboard
+    light
 @endsection
