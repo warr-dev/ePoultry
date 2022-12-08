@@ -35,4 +35,13 @@ class ApiController extends Controller
             'status'=>'success'
         ]);
     }
+    public function setheight(Request $request)
+    {
+        // dd($request->all());
+        $conf=WaterConf::first();
+        $conf->update($request->all());
+        return response()->json([
+            'status'=>'success'
+        ]);
+    }
 }
