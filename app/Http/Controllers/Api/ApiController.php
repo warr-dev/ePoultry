@@ -69,11 +69,11 @@ class ApiController extends Controller
     }
     public function sethdt(Request $request)
     {
-        $data = $request->validate([
-            'humidity'=>['numeric','required'],
-            'temperature'=>['numeric','required']
-        ]);
-        HDT::create($data);
+        // $data = $request->validate([
+        //     'humidity'=>['numeric','required'],
+        //     'temperature'=>['numeric','required']
+        // ]);
+        HDT::create($request->all());
         return response()->json([
             'status'=>'success'
         ]);
