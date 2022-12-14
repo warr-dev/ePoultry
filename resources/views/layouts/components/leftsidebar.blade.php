@@ -34,7 +34,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('fan')}}">
           <i class="icon-thermometer menu-icon"></i>
           <span class="menu-title">Fan</span>
         </a>

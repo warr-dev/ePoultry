@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\DHTConf;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -29,5 +30,6 @@ class DatabaseSeeder extends Seeder
             'maintankheight'=>0,
             'dispensertankheight'=>0,
         ]);
+        DHTConf::create(['interval' => 30]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\DHTConf;
 use App\Models\FanLogs;
 use App\Models\FeedingTime;
 use App\Models\LightLogs;
@@ -74,6 +75,12 @@ class ApiController extends Controller
         FanLogs::create($data);
         return response()->json([
             'status'=>'success'
+        ]);
+    }
+    public function getdhtconf()
+    {
+        return response()->json([
+            'countdown'=> DHTConf::countdown()
         ]);
     }
 }

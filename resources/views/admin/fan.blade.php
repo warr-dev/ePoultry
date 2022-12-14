@@ -9,6 +9,36 @@
     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
     <div class="row">
+        
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Configuration</h4>
+                    
+                    <form action="{{ route('dhtconf.update') }}" method="post">
+                        @method('put')
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Interval</label>
+                                    <div class="col-sm-6">
+                                        <input type="number" name="interval"
+                                            class="form-control form-control-sm" max="100" min="1"
+                                            step="1" value="{{$conf->interval??0}}">
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
         <div class="col-lg-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -39,6 +69,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 
 @endsection
