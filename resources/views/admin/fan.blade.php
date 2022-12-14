@@ -22,16 +22,42 @@
                             <div class="col-md-12">
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Interval</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-9">
                                         <input type="number" name="interval"
                                             class="form-control form-control-sm" max="100" min="1"
                                             step="1" value="{{$conf->interval??0}}">
                                     </div>
-                                    <div class="col-md-3 text-center">
-                                        <button type="submit" class="btn btn-success">Save</button>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Humidity Critical</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" name="critical_humidity"
+                                            class="form-control form-control-sm" max="100" min="1"
+                                             value="{{$conf->critical_humidity??0}}">
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Temperature Critical</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" name="critical_temperature"
+                                            class="form-control form-control-sm" max="100" min="1"
+                                             value="{{$conf->critical_temperature??0}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="offset-sm-3 col-md-3">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                </div>
+                            </div>
+                            
                         </div>
                     </form>
 

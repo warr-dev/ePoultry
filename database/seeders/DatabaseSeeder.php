@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         User::truncate();
         WaterConf::truncate();
+        DHTConf::truncate();
         User::create([
             'name'=>'administrator',
             'email'=>'admin@example.com',
@@ -30,6 +31,6 @@ class DatabaseSeeder extends Seeder
             'maintankheight'=>0,
             'dispensertankheight'=>0,
         ]);
-        DHTConf::create(['interval' => 30]);
+        DHTConf::create(['interval' => 30,'critical_temperature'=>30,'critical_humidity'=>85]);
     }
 }

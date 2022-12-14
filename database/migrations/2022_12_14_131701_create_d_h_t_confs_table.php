@@ -16,6 +16,8 @@ class CreateDHTConfsTable extends Migration
         Schema::create('d_h_t_confs', function (Blueprint $table) {
             $table->id();
             $table->decimal('interval');
+            $table->decimal('critical_temperature');
+            $table->decimal('critical_humidity');
             $table->timestamps();
         });
     }

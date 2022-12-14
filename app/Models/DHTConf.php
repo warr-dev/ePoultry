@@ -10,7 +10,9 @@ class DHTConf extends Model
     use HasFactory;
 
     protected $fillable = [
-        'interval'
+        'interval',
+        'critical_temperature',
+        'critical_humidity'
     ];
 
     public static function countdown()

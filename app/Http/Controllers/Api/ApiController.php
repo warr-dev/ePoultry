@@ -80,8 +80,11 @@ class ApiController extends Controller
     }
     public function getdhtconf()
     {
+        $conf=DHTConf::first();
         return response()->json([
-            'countdown'=> DHTConf::countdown()
+            'countdown'=> DHTConf::countdown(),
+            'tcrit'=> $conf->critical_temperature,
+            'hcrit'=> $conf->critical_humidity
         ]);
     }
 }

@@ -29,5 +29,5 @@ Route::post('/tank/setheight',[ApiController::class,'setheight']);
 Route::post('/sethdt',[ApiController::class,'sethdt']);
 Route::post('/setlight',[ApiController::class,'setlight']);
 Route::post('/setfan',[ApiController::class,'setfan']);
-Route::get('/getdhtinterval',[ApiController::class,'getdhtconf']);
+Route::get('/getdhtconf',[ApiController::class,'getdhtconf']);
 
