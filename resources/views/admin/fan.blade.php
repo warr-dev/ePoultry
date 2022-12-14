@@ -69,6 +69,39 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Fan Logs</h4>
+                    {{-- <p class="card-description">
+                  Add class <code>.table-hover</code>
+                </p> --}}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Temperature</th>
+                                    <th>Humidity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($data as $item)
+                                <tr>    
+                                    <td>{{ $item->created_at->format('Y-m-d') }}</td>
+                                    <td>{{ $item->created_at->format('H:i:s') }}</td>
+                                    <td>{{ $item->temperature }}</td>
+                                    <td>{{ $item->humidity }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     </div>
 

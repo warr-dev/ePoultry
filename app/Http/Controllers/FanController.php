@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DHTConf;
 use App\Models\FanLogs;
+use App\Models\HDT;
 use Illuminate\Http\Request;
 
 class FanController extends Controller
@@ -12,7 +13,8 @@ class FanController extends Controller
     {
         $fanlogs = FanLogs::all();
         $conf = DHTConf::first();
-        return view('admin.fan',compact('fanlogs','conf'));
+        $data = HDT::all();
+        return view('admin.fan',compact('fanlogs','conf','data'));
     }
 
     public function setFanConf(Request $request)

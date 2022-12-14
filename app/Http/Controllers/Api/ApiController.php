@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\DHTConf;
 use App\Models\FanLogs;
+use App\Models\HDT;
 use App\Models\FeedingTime;
 use App\Models\LightLogs;
 use App\Models\WaterConf;
@@ -72,7 +73,7 @@ class ApiController extends Controller
             'humidity'=>['numeric','required'],
             'temperature'=>['numeric','required']
         ]);
-        FanLogs::create($data);
+        HDT::create($data);
         return response()->json([
             'status'=>'success'
         ]);
