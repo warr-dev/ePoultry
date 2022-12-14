@@ -6,9 +6,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-title">
-                        <h4>Tank Configurations</h4>
-                    </div>
+                    <div class="card-title">Tank Configurations</div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group row">
@@ -41,9 +39,7 @@
             
             <div class="card">
                 <div class="card-body">
-                    <div class="card-title">
-                        <h4>Tank Criticals</h4>
-                    </div>
+                    <div class="card-title">Tank Criticals</div>
                     <form action="{{ route('water.update') }}" method="post">
                         @method('put')
                         @csrf

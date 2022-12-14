@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FanController;
 use App\Http\Controllers\FeedingController;
 use App\Http\Controllers\WaterController;
 use App\Http\Controllers\LightController;
@@ -30,8 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/water', [WaterController::class,'index'])->name('water');
     Route::get('/settingup', [WaterController::class,'setup'])->name('water.settank');
     Route::put('/water', [WaterController::class,'update'])->name('water.update');
-
-    // Route::get('/fan', [DashboardController::class,'fan'])->name('fan');
+    Route::get('/fan', [FanController::class,'index'])->name('fan');
 });
 
 

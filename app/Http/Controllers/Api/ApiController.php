@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\FanLogs;
 use App\Models\FeedingTime;
+use App\Models\LightLogs;
 use App\Models\WaterConf;
 use Illuminate\Http\Request;
 
@@ -40,6 +42,36 @@ class ApiController extends Controller
         // dd($request->all());
         $conf=WaterConf::first();
         $conf->update(array_merge($request->all(),['mode'=>'run']));
+        return response()->json([
+            'status'=>'success'
+        ]);
+    }
+    public function setlight(Request $request)
+    {
+        if (!$request->state)
+            return response()->json(['status'=>'failed','message'=>'state is required']);
+        LightLogs::create($request->all());
+        return response()->json([
+            'status'=>'success'
+        ]);
+    }
+    
+    public function setfan(Request $request)
+    {
+        if (!$request->state)
+            return response()->json(['status'=>'failed','message'=>'state is required']);
+        FanLogs::create($request->all());
+        return response()->json([
+            'status'=>'success'
+        ]);
+    }
+    public function sethdt(Request $request)
+    {
+        $data = $request->validate([
+            'humidity'=>['numeric','required'],
+            'temperature'=>['numeric','required']
+        ]);
+        FanLogs::create($data);
         return response()->json([
             'status'=>'success'
         ]);

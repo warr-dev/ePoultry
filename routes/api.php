@@ -25,3 +25,7 @@ Route::get('/check',[ApiController::class,'check']);
 Route::get('/checkmode',[ApiController::class,'checkmode']);
 Route::get('/setmode',[ApiController::class,'setmode']);
 Route::post('/tank/setheight',[ApiController::class,'setheight']);
+
+Route::get('/setlight',[ApiController::class,'setlight']);
+Route::get('/setfan',[ApiController::class,'setfan']);
+Route::get('/sethdt',[ApiController::class,'sethdt']);
