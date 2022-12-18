@@ -9,6 +9,7 @@ use App\Models\HDT;
 use App\Models\FeedingTime;
 use App\Models\LightLogs;
 use App\Models\WaterConf;
+use App\Models\WaterLogs;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -24,9 +25,11 @@ class ApiController extends Controller
     }
     public function checkmode()
     {
-        $mode = WaterConf::first()->mode;
+        $conf = WaterConf::first();
         return response()->json([
-            'mode'=> $mode
+            'mode'=> $conf->mode,
+            'critical'=>$conf->dispensertankheight-($conf->dispensertankheight*($conf->dispensertankcritical/100)),
+            'fill'=> $conf->dispensertankheight-($conf->dispensertankheight*.90)
         ]);
     }
     public function setmode(Request $request)
@@ -85,6 +88,13 @@ class ApiController extends Controller
             'countdown'=> DHTConf::countdown(),
             'tcrit'=> $conf->critical_temperature,
             'hcrit'=> $conf->critical_humidity
+        ]);
+    }
+    public function setwaterlog(Request $request)
+    {
+        WaterLogs::create($request->all());
+        return response()->json([
+            'status'=>'success'
         ]);
     }
 }
