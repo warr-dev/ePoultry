@@ -36,7 +36,6 @@
             </div>
         </div>
         <div class="col-md-6">
-            
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">Tank Criticals</div>
@@ -73,6 +72,34 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">Refill Logs</div>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Tank</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($logs as $log)
+                                <tr>    
+                                    <td>{{ $log->created_at->format('Y-m-d') }}</td>
+                                    <td>{{ $log->created_at->format('H:i:s') }}</td>
+                                    <td>{{ $log->tank }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
