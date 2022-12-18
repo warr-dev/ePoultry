@@ -99,7 +99,7 @@
         <div class="col-lg-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Fan Logs</h4>
+                    <h4 class="card-title">Sensor Readings</h4>
                     {{-- <p class="card-description">
                   Add class <code>.table-hover</code>
                 </p> --}}
