@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\WaterConf;
+use App\Models\WaterLogs;
 use Illuminate\Http\Request;
 
 class WaterController extends Controller
@@ -10,7 +11,8 @@ class WaterController extends Controller
     public function index()
     {
         $conf = WaterConf::first();
-        return view('admin.water',compact('conf'));
+        $logs = WaterLogs::all();
+        return view('admin.water',compact('conf','logs'));
     }
     
     public function setup()
