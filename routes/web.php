@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/water', [WaterController::class,'update'])->name('water.update');
     Route::get('/fan', [FanController::class,'index'])->name('fan');
     Route::put('/fan/sensor/set',[FanController::class,'setFanConf'])->name('dhtconf.update');
+    Route::put('/lightconf', [LightController::class,'update'])->name('lightconf.update');
 });
 
 
