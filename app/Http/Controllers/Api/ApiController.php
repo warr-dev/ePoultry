@@ -10,6 +10,7 @@ use App\Models\FeedingTime;
 use App\Models\LightLogs;
 use App\Models\WaterConf;
 use App\Models\WaterLogs;
+use App\Models\TankLevels;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -93,6 +94,22 @@ class ApiController extends Controller
     public function setwaterlog(Request $request)
     {
         WaterLogs::create($request->all());
+        return response()->json([
+            'status'=>'success'
+        ]);
+    }
+    public function settanklevel(Request $request)
+    {
+        $data=$request->validate([
+            'tank'=>['required','string'],
+            'level'=>['required','numeric']
+        ]);
+        if($data['tank']=='main')
+        {
+            $tankh = WaterConf::first()->maintankheight;
+            $data['level'] = (($tankh - $data['level']) / $tankh) * 100;
+        }
+        TankLevels::create($data);
         return response()->json([
             'status'=>'success'
         ]);

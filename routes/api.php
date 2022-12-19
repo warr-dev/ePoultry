@@ -31,4 +31,5 @@ Route::post('/setlight',[ApiController::class,'setlight']);
 Route::post('/setfan',[ApiController::class,'setfan']);
 Route::get('/getdhtconf',[ApiController::class,'getdhtconf']);
 Route::post('/setwaterlog',[ApiController::class,'setwaterlog']);
+Route::post('/settanklevel',[ApiController::class,'settanklevel']);
 
