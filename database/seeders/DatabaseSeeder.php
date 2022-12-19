@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\DHTConf;
+use App\Models\LightConf;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         User::truncate();
         WaterConf::truncate();
         DHTConf::truncate();
+        LightConf::truncate();
         User::create([
             'name'=>'administrator',
             'email'=>'admin@example.com',
@@ -32,5 +34,6 @@ class DatabaseSeeder extends Seeder
             'dispensertankheight'=>20,
         ]);
         DHTConf::create(['interval' => 30,'critical_temperature'=>30,'critical_humidity'=>85]);
+        LightConf::create(['value'=>30]);
     }
 }

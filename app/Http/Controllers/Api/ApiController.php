@@ -11,6 +11,7 @@ use App\Models\LightLogs;
 use App\Models\WaterConf;
 use App\Models\WaterLogs;
 use App\Models\TankLevels;
+use App\Models\LightConf;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -112,6 +113,13 @@ class ApiController extends Controller
         TankLevels::create($data);
         return response()->json([
             'status'=>'success'
+        ]);
+    }
+    public function getlightconf()
+    {
+        $conf=LightConf::first();
+        return response()->json([
+            'value'=> $conf->value,
         ]);
     }
 }
