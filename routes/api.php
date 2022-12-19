@@ -33,4 +33,6 @@ Route::get('/getdhtconf',[ApiController::class,'getdhtconf']);
 Route::post('/setwaterlog',[ApiController::class,'setwaterlog']);
 Route::post('/settanklevel',[ApiController::class,'settanklevel']);
 Route::get('/getlightconf',[ApiController::class,'getlightconf']);
+Route::get('/getheatstatus',[ApiController::class,'getheatstatus']);
+
 

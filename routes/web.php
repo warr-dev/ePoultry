@@ -6,6 +6,7 @@ use App\Http\Controllers\FanController;
 use App\Http\Controllers\FeedingController;
 use App\Http\Controllers\WaterController;
 use App\Http\Controllers\LightController;
+use App\Http\Controllers\ManureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/fan', [FanController::class,'index'])->name('fan');
     Route::put('/fan/sensor/set',[FanController::class,'setFanConf'])->name('dhtconf.update');
     Route::put('/lightconf', [LightController::class,'update'])->name('lightconf.update');
+    Route::get('/manure', [ManureController::class,'index'])->name('manure');
+    Route::post('/manure', [ManureController::class,'store'])->name('heat.store');
 });
 
 

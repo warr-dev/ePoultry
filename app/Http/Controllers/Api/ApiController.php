@@ -7,6 +7,7 @@ use App\Models\DHTConf;
 use App\Models\FanLogs;
 use App\Models\HDT;
 use App\Models\FeedingTime;
+use App\Models\Heat;
 use App\Models\LightLogs;
 use App\Models\WaterConf;
 use App\Models\WaterLogs;
@@ -120,6 +121,12 @@ class ApiController extends Controller
         $conf=LightConf::first();
         return response()->json([
             'value'=> $conf->value,
+        ]);
+    }
+    public function getheatstatus()
+    {
+        return response()->json([
+            'heating'=>Heat::isHeating()
         ]);
     }
 }
