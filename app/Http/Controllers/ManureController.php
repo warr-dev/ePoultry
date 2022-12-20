@@ -9,7 +9,7 @@ class ManureController extends Controller
 {
     public function index()
     {
-        $heatlogs = Heat::all();
+        $heatlogs = Heat::orderBy('id','desc')->limit(10)->get();
         return view('admin.manure',compact('heatlogs'));
     }
     public function store(Request $request)

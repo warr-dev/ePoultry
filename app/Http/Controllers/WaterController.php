@@ -11,7 +11,7 @@ class WaterController extends Controller
     public function index()
     {
         $conf = WaterConf::first();
-        $logs = WaterLogs::all();
+        $logs = WaterLogs::orderBy('id','desc')->limit(10)->get();
         return view('admin.water',compact('conf','logs'));
     }
     

@@ -11,9 +11,9 @@ class FanController extends Controller
 {
     public function index()
     {
-        $fanlogs = FanLogs::all();
+        $fanlogs = FanLogs::orderBy('id','desc')->limit(10)->get();
         $conf = DHTConf::first();
-        $data = HDT::all();
+        $data = HDT::orderBy('id','desc')->limit(10)->get();
         return view('admin.fan',compact('fanlogs','conf','data'));
     }
 
