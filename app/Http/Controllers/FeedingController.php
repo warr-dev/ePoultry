@@ -17,9 +17,11 @@ class FeedingController extends Controller
     {
         $data = $request->validate([
             'time'=>['required','date_format:H:i'],
-            'days'=>['array'],
+            'days.*'=>['required'],
             'duration'=>['numeric','required']
         ]);
+        if (!isset($data['days']))
+            return redirect()->back()->with('message', 'days was required');
         FeedingTime::create($data);
         return redirect()->back()->with('message', 'Feeding Time Added!')->with('color','green');
     }

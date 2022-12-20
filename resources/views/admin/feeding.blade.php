@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 grid-margin stretch-card">
+        {{-- <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">Tank Configurations</div>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 

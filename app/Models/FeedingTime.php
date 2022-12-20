@@ -27,4 +27,16 @@ class FeedingTime extends Model
             return 1;
         return 0;
     }
+    public static function countFeedingToday()
+    {
+        return self::whereRaw('JSON_CONTAINS(days, \'["'.date('w').'"]\')')
+            ->count();
+    }
+    public static function feedingDoneToday()
+    {
+        return self::whereRaw('JSON_CONTAINS(days, \'["'.date('w').'"]\')')
+            ->whereRaw("addtime(`time`,`duration`*60) < '".date('H:i:s'."'"))
+            ->count();
+    }
 }
+

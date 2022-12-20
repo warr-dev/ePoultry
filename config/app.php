@@ -15,6 +15,15 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'sms'=> [
+        'apicode'=> env('ITEXMO_API_CODE'),
+        'passwd'=> env('ITEXMO_PASSWORD'),
+        'sender_id'=> env('ITEXMO_SENDER_ID'),
+    ],
+    'semaphore'=>[
+        'apikey'=> env('SEMAPHORE_API_KEY')
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

@@ -7,6 +7,7 @@ use App\Http\Controllers\FeedingController;
 use App\Http\Controllers\WaterController;
 use App\Http\Controllers\LightController;
 use App\Http\Controllers\ManureController;
+use App\Http\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/lightconf', [LightController::class,'update'])->name('lightconf.update');
     Route::get('/manure', [ManureController::class,'index'])->name('manure');
     Route::post('/manure', [ManureController::class,'store'])->name('heat.store');
+    Route::get('/settings', [SettingsController::class,'index'])->name('settings');
+    Route::put('/settings/sms', [SettingsController::class,'update'])->name('smsconf.update');
 });
 
 
