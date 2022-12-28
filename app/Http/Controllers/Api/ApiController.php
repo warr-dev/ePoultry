@@ -34,7 +34,7 @@ class ApiController extends Controller
         return response()->json([
             'mode' => $conf->mode,
             'critical' => $conf->dispensertankheight - ($conf->dispensertankheight * ($conf->dispensertankcritical / 100)),
-            'fill' => $conf->dispensertankheight - ($conf->dispensertankheight * .90)
+            'fill' => $conf->dispensertankheight - ($conf->dispensertankheight * .7)
         ]);
     }
     public function setmode(Request $request)
