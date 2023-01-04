@@ -12,7 +12,7 @@ class DashboardController extends Controller
     public function index()
     {
         $lastdht = HDT::orderBy('id', 'desc')->first();
-        $waterlevel = TankLevels::where('tank', 'main')->orderBy('id', 'desc')->first()->level;
+        $waterlevel = TankLevels::where('tank', 'main')->orderBy('id', 'desc')->first()->level??0;
         $refills = TankLevels::where('tank', 'main')->whereRaw('date(created_at)=' . date('Y-m-d'))->count();
         $feedingcounts = FeedingTime::countFeedingToday();
         $feedingdone = FeedingTime::feedingDoneToday();
