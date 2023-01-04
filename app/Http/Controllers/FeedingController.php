@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FeedingConf;
 use Illuminate\Http\Request;
 use App\Models\FeedingTime;
 
@@ -11,7 +12,8 @@ class FeedingController extends Controller
     {
         $feedtimes = FeedingTime::orderBy('id','desc')->limit(10)->get();
         $days = array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
-        return view('admin.feeding',compact('days','feedtimes'));
+        $conf = FeedingConf::first();
+        return view('admin.feeding',compact('days','feedtimes','conf'));
     }
     public function create(Request $request)
     {
@@ -31,4 +33,17 @@ class FeedingController extends Controller
         return redirect()->back()->with('message', 'Feeding Time Deleted!')->with('color','green');
     }
 
+    public function update(Request $request)
+    {
+        $conf = FeedingConf::first();
+        $conf->update($request->all());
+        return redirect()->back()->with('message', 'Feeding Tank Height Updated!')->with('color', 'green');
+    }
+    public function setup()
+    {
+        if (FeedingConf::getmode() !== 'setup')
+            return redirect()->back();
+        return view('admin.settingupfeedtank');
+    }
+    
 }

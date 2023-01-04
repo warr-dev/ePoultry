@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-md-6 grid-margin stretch-card">
+        <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">Tank Configurations</div>
@@ -73,7 +73,7 @@
                                 <label class="col-sm-3 col-form-label">Feeds Tank Height</label>
                                 <div class="col-sm-6">
                                     <input disabled type="text" class="form-control form-control-sm"
-                                        value="{{ $conf->maintankheight ?? 0 }}">
+                                        value="{{ $conf->tankheight ?? 0 }}">
                                 </div>
                                 <div class="col-md-3">
                                   <buttton class="btn btn-primary">Set Tank Height</buttton>
@@ -81,22 +81,26 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Dispenser Critical Level (%)</label>
-                                <div class="col-sm-6">
-                                    <input type="number" name="dispensertankcritical" class="form-control form-control-sm"
-                                        max="100" min="1" step="1"
-                                        value="{{ $conf->dispensertankcritical ?? 0 }}">
+                            <form action="{{route('feeding.settank')}}" method="POST" id="frm-settank"> 
+                                @csrf
+                                @method('put')
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Feeds Tank Critical Level (%)</label>
+                                    <div class="col-sm-6">
+                                        <input type="number" name="tankcritical" class="form-control form-control-sm"
+                                            max="100" min="1" step="1"
+                                            value="{{ $conf->tankcritical ?? 0 }}">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <buttton onclick="$('#frm-settank').submit()" class="btn btn-primary">Set Critical (%)</buttton>
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                  <buttton class="btn btn-primary">Set Critical (%)</buttton>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 
 

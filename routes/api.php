@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+Route::get('/feeding/conf',[ApiController::class,'getFeedingConf']);
+Route::post('/feeding/conf',[ApiController::class,'setFeedingTank']);
 Route::get('/check',[ApiController::class,'check']);
 Route::get('/checkmode',[ApiController::class,'checkmode']);
 Route::get('/setmode',[ApiController::class,'setmode']);

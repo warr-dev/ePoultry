@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
     Route::get('/feeding', [FeedingController::class,'index'])->name('feeding');
     Route::post('/feeding', [FeedingController::class,'create'])->name('feeding.addtime');
+    Route::put('/feeding/tank', [FeedingController::class,'update'])->name('feeding.settank');
     Route::delete('/feeding/{id}', [FeedingController::class,'destroy'])->name('feeding.delete');
 
     Route::get('/light', [LightController::class,'index'])->name('light');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\DHTConf;
 use App\Models\FanLogs;
+use App\Models\FeedingConf;
 use App\Models\HDT;
 use App\Models\FeedingTime;
 use App\Models\Heat;
@@ -21,11 +22,28 @@ class ApiController extends Controller
 {
     public function check()
     {
-
         return response()->json([
-            'date' => date('Y-m-d'),
-            'time' => date('H:i:s'),
+            // 'date' => date('Y-m-d'),
+            // 'time' => date('H:i:s'),
             'feeding' => FeedingTime::isFeedingTime()
+        ]);
+    }
+    public function getFeedingConf()
+    {
+        $conf = FeedingConf::first();
+        return response()->json([
+            'mode' => $conf->mode,
+            'height' => $conf->tankheight,
+            'crit' => $conf->tankcritical,
+        ]);
+    }
+    public function setFeedingTank(Request $request)
+    {
+        $conf = FeedingConf::first();
+        $conf->update(array_merge($request->all(), ['mode' => 'run']));
+        return response()->json([
+            'conf' => $conf,
+            'status' => 'success'
         ]);
     }
     public function checkmode()
@@ -108,18 +126,18 @@ class ApiController extends Controller
             'tank' => ['required', 'string'],
             'level' => ['required', 'numeric']
         ]);
-        
+
         if ($data['tank'] == 'main') {
             $conf = WaterConf::first();
             $data['level'] = (($conf->maintankheight - $data['level']) / $conf->maintankheight) * 100;
-            if ($data['level'] < $conf->maintankcritical) 
-                $sms=$this->semaphore('From: EPoult 
-                 The Water tank is now at Critical Level ('.$data['level'].'%). Please refill immediately');
+            if ($data['level'] < $conf->maintankcritical)
+                $sms = $this->semaphore('From: EPoult 
+                 The Water tank is now at Critical Level (' . $data['level'] . '%). Please refill immediately');
         }
         TankLevels::create($data);
         return response()->json([
             'status' => 'success',
-            'level'=> $data['level'],
+            'level' => $data['level'],
         ]);
     }
     public function getlightconf()
@@ -137,10 +155,10 @@ class ApiController extends Controller
     }
     public function itexmo($number, $message)
     {
-        $apicode=config('app.sms')['apicode'];
+        $apicode = config('app.sms')['apicode'];
         $passwd = config('app.sms')['passwd'];
         $url = 'https://www.itexmo.com/php_api/api.php';
-        $itexmo = array('1' => $number, '2' => $message, '3' => $apicode, 'passwd' => $passwd, '6'=>config('app.sms')['sender_id']);
+        $itexmo = array('1' => $number, '2' => $message, '3' => $apicode, 'passwd' => $passwd, '6' => config('app.sms')['sender_id']);
         $param = array(
             'http' => array(
                 'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
@@ -153,11 +171,11 @@ class ApiController extends Controller
     }
     public function semaphore($message)
     {
-        $conf=SMSConf::first();
+        $conf = SMSConf::first();
         $response = Http::post('https://api.semaphore.co/api/v4/messages', [
             'apikey' => $conf->apikey,
             'number' => $conf->number,
-            'message'=> $message
+            'message' => $message
         ]);
         return $response;
     }
