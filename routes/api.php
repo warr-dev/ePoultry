@@ -23,10 +23,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/feeding/conf',[ApiController::class,'getFeedingConf']);
 Route::post('/feeding/conf',[ApiController::class,'setFeedingTank']);
+Route::get('/feed/setmode',[ApiController::class,'setFeederMode']);
+Route::get('/checkfeedmode',[ApiController::class,'checkfeedmode']);
 Route::get('/check',[ApiController::class,'check']);
 Route::get('/checkmode',[ApiController::class,'checkmode']);
 Route::get('/setmode',[ApiController::class,'setmode']);
 Route::post('/tank/setheight',[ApiController::class,'setheight']);
+Route::post('/feeder/conf',[ApiController::class,'setfeedertankheight']);
 
 Route::post('/sethdt',[ApiController::class,'sethdt']);
 Route::post('/setlight',[ApiController::class,'setlight']);

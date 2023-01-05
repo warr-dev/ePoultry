@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Setting up</title>
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/css/vertical-layout-light/style.css">
     <style>
         @import url("https://fonts.googleapis.com/css?family=Cabin+Sketch");
 
@@ -99,7 +99,7 @@ h1 small {
         <div class="sketch">
             {{-- <div class="bee-sketch red"></div>
             <div class="bee-sketch blue"></div> --}}
-            <img height="100%" src="images/set.png" alt="" srcset="">
+            <img height="100%" src="/images/set.png" alt="" srcset="">
         </div>
     
     <h1>Setting Up
@@ -114,7 +114,7 @@ h1 small {
     </div>
     <script>
         setInterval(() => {
-            fetch('api/checkmode').then(res=>res.json()).then(json=>{
+            fetch('/api/checkfeedmode').then(res=>res.json()).then(json=>{
                 console.log(json)
                 if(json.mode!=='setup') window.history.back()
             })

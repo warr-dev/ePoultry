@@ -76,7 +76,7 @@
                                         value="{{ $conf->tankheight ?? 0 }}">
                                 </div>
                                 <div class="col-md-3">
-                                  <buttton class="btn btn-primary">Set Tank Height</buttton>
+                                  <buttton class="btn btn-primary" onclick="settank()">Set Tank Height</buttton>
                                 </div>
                             </div>
                         </div>
@@ -163,6 +163,12 @@
                 $('#deleteFeedingTime')[0].action = url.replace(':id', id)
                 $('#deleteFeedingTime')[0].submit()
             }
+        }
+        function settank() {
+            fetch('api/feed/setmode?mode=setup').then(res => res.json()).then(json => {
+                if (json?.status == 'success') {}
+                window.location.href = '{{ route('feeding.setmode') }}';
+            })
         }
     </script>
 @endpush

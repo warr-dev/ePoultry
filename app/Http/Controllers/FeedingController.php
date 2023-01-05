@@ -45,5 +45,9 @@ class FeedingController extends Controller
             return redirect()->back();
         return view('admin.settingupfeedtank');
     }
+    public function setmode()
+    {
+        return view('admin.settingupfeedtank');
+    }
     
 }

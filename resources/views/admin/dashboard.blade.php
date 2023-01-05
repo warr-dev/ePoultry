@@ -1,27 +1,50 @@
 @extends('layouts.admin')
 
+@push('head')
+    <style>
+      .card-0{
+        background: linear-gradient(to right,#d92525 0%, #F5F7FF 00%); border: 1px solid #e3e3e3;
+      }
+      .card-20{
+        background: linear-gradient(to right,#d92525 20%, #F5F7FF 20%); border: 1px solid #e3e3e3;
+      }
+      .card-40{
+        background: linear-gradient(to right,#4ccfb9 40%, #F5F7FF 40%); border: 1px solid #e3e3e3;
+      }
+      .card-60{
+        background: linear-gradient(to right,#4ccfb9 60%, #F5F7FF 60%); border: 1px solid #e3e3e3;"
+      }
+      .card-80{
+        background: linear-gradient(to right,#4ccfb9 80%, #F5F7FF 80%); border: 1px solid #e3e3e3;
+      }
+      .card-100{
+        background: linear-gradient(to right,#4ccfb9 100%, #F5F7FF 100%); border: 1px solid #e3e3e3;
+      }
+    </style>
+@endpush
 
 @section('content')
     <div class="row">
     
         <div class="col-md-6 grid-margin stretch-card">
-     
-    @if ($lastdht->temperature < 20)
-    <div class="card tale-bg" style=" background: linear-gradient(to right,#d92525 20%, #F5F7FF 20%); border: 1px solid #e3e3e3;">
-    @elseif  ($lastdht->temperature  > 20 and  $lastdht->temperature  < 50)      
-    <div class="card tale-bg" style=" background: linear-gradient(to right,#4ccfb9 30%, #F5F7FF 30%); border: 1px solid #e3e3e3;">
-    @elseif  ($lastdht->temperature  > 50 and  $lastdht->temperature  < 70)      
-    <div class="card tale-bg" style=" background: linear-gradient(to right,#4ccfb9 50%, #F5F7FF 50%); border: 1px solid #e3e3e3;">
-    @elseif  ($lastdht->temperature  > 70 and  $lastdht->temperature  < 90)      
-    <div class="card tale-bg" style=" background: linear-gradient(to right,#4ccfb9 70%, #F5F7FF 70%); border: 1px solid #e3e3e3;">
-    @elseif  ($lastdht->temperature  > 90 and  $lastdht->temperature  < 100)      
-    <div class="card tale-bg" style=" background: linear-gradient(to right,#4ccfb9 90%, #F5F7FF 90%); border: 1px solid #e3e3e3;">
-    @elseif  ($lastdht->temperature  == 100 )      
-    <div class="card tale-bg" style=" background: linear-gradient(to right,#4ccfb9 100%, #F5F7FF 100%); border: 1px solid #e3e3e3;">
-    @endif
-    
-        
-        
+          @if ($lastdht)
+            @if ($lastdht->temperature < 20)
+              <div class="card tale-bg card-0">
+            @elseif  ($lastdht->temperature  >= 20 &&  $lastdht->temperature  < 40)      
+              <div class="card tale-bg card-20">
+            @elseif  ($lastdht->temperature  >= 40 &&  $lastdht->temperature  < 60)      
+              <div class="card tale-bg card-40">
+            @elseif  ($lastdht->temperature  >= 60 &&  $lastdht->temperature  < 80)      
+              <div class="card tale-bg card-60">
+            @elseif  ($lastdht->temperature  >= 80 &&  $lastdht->temperature  < 100)      
+              <div class="card tale-bg card-80">
+            @elseif  ($lastdht->temperature == 100)      
+              <div class="card tale-bg card-100">
+            @endif
+          @else
+            <div class="card tale-bg">
+          @endif
+
               <div class="card-body" >
                   <b  ng-style ="font-size:30px;color: #F5F7FF;"> FEEDS</b>
                   <p class="fs-30 mb-2" >@if ($lastdht){{$lastdht->temperature}} @endif %</p>
@@ -356,7 +379,7 @@
         $(function() {
             if ($("#order-chart").length) {
       var areaData = {
-        labels: [@foreach($dhtvalues as $dht) {{$dht->created_at->format('H:i')}}, @endforeach],
+        labels: ['sda','dsad','label4','label5'],
         datasets: [
           {
             data: [200, 480, 700, 600, 620, 350, 380, 350, 850, "600", "650", "350", "590", "350", "620", "500", "990", "780", "650"],

@@ -67,7 +67,6 @@ class ApiController extends Controller
     }
     public function setheight(Request $request)
     {
-        // dd($request->all());
         $conf = WaterConf::first();
         $conf->update(array_merge($request->all(), ['mode' => 'run']));
         return response()->json([
@@ -178,5 +177,32 @@ class ApiController extends Controller
             'message' => $message
         ]);
         return $response;
+    }
+    public function setFeederMode(Request $request)
+    {
+        $conf = FeedingConf::first();
+        $conf->mode = $request->mode ?? 'setup';
+        $conf->save();
+        return response()->json([
+            'conf' => $conf,
+            'status' => 'success'
+        ]);
+    }
+    public function checkfeedmode()
+    {
+        $conf = FeedingConf::first();
+        return response()->json([
+            'mode' => $conf->mode,
+            'critical' => $conf->tankheight - ($conf->tankheight * ($conf->tankcritical / 100)),
+            'fill' => $conf->tankheight - ($conf->tankheight * .7)
+        ]);
+    }
+    public function setfeedertankheight(Request $request)
+    {
+        $conf = FeedingConf::first();
+        $conf->update(array_merge($request->all(), ['mode' => 'run']));
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 }
