@@ -121,9 +121,9 @@ h1 small {
         }, 1000);
         
     function cancel(){
-        fetch('api/setmode?mode=run').then(res=>res.json()).then(json=>{
+        fetch('/api/feed/setmode?mode=run').then(res=>res.json()).then(json=>{
             if(json?.status=='success'){}
-                window.location.href='{{route('water')}}';
+                window.location.href='{{route('feeding')}}';
         })
     }
 
