@@ -184,7 +184,7 @@ class ApiController extends Controller
         $conf->mode = $request->mode ?? 'setup';
         $conf->save();
         return response()->json([
-            'conf' => $conf,
+            // 'conf' => $conf,
             'status' => 'success'
         ]);
     }
