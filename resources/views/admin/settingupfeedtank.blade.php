@@ -104,8 +104,8 @@ h1 small {
     
     <h1>Setting Up
         <ul >
-            <li>remove power from controller for water</li>
-            <li>clear the water tank</li>
+            <li>remove power from controller for feeder tank</li>
+            <li>clear the feed tank</li>
             <li>power on the microncontroller</li>
             <li>wait till this page reloads</li>
         </ul>
@@ -116,7 +116,7 @@ h1 small {
         setInterval(() => {
             fetch('/api/checkfeedmode').then(res=>res.json()).then(json=>{
                 console.log(json)
-                if(json.mode!=='setup') window.history.back()
+                if(json.mode!=='setup') window.location.href='{{route('feeding')}}';
             })
         }, 1000);
         
