@@ -57,19 +57,23 @@
         <div class="col-md-6 grid-margin transparent">
               <div class="row">
                 <div class="col-md-6 mb-4 stretch-card transparent">
-                @if ($lastdht->humidity < 20)
-    <div class="card card-bg" style=" background: linear-gradient(to right,#d92525 20%, #F5F7FF 20%); border: 1px solid #e3e3e3;">
-    @elseif  ($lastdht->humidity  > 20 and  $lastdht->humidity  < 50)      
-    <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 30%, #F5F7FF 30%); border: 1px solid #e3e3e3;">
-    @elseif  ($lastdht->humidity  > 50 and  $lastdht->humidity  < 70)      
-    <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 50%, #F5F7FF 50%); border: 1px solid #e3e3e3;">
-    @elseif  ($lastdht->humidity  > 70 and  $lastdht->humidity  < 90)      
-    <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 70%, #F5F7FF 70%); border: 1px solid #e3e3e3;">
-    @elseif  ($lastdht->humidity  > 90 and  $lastdht->humidity  < 100)      
-    <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 90%, #F5F7FF 90%); border: 1px solid #e3e3e3;">
-    @elseif  ($lastdht->humidity  == 100 )      
-    <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 100%, #F5F7FF 100%); border: 1px solid #e3e3e3;">
-    @endif
+                @if ($lastdht)
+                  @if ($lastdht->humidity < 20)
+                  <div class="card card-bg" style=" background: linear-gradient(to right,#d92525 20%, #F5F7FF 20%); border: 1px solid #e3e3e3;">
+                  @elseif  ($lastdht->humidity  > 20 and  $lastdht->humidity  < 50)      
+                  <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 30%, #F5F7FF 30%); border: 1px solid #e3e3e3;">
+                  @elseif  ($lastdht->humidity  > 50 and  $lastdht->humidity  < 70)      
+                  <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 50%, #F5F7FF 50%); border: 1px solid #e3e3e3;">
+                  @elseif  ($lastdht->humidity  > 70 and  $lastdht->humidity  < 90)      
+                  <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 70%, #F5F7FF 70%); border: 1px solid #e3e3e3;">
+                  @elseif  ($lastdht->humidity  > 90 and  $lastdht->humidity  < 100)      
+                  <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 90%, #F5F7FF 90%); border: 1px solid #e3e3e3;">
+                  @elseif  ($lastdht->humidity  == 100 )      
+                  <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 100%, #F5F7FF 100%); border: 1px solid #e3e3e3;">
+                  @endif
+                  @else
+                    <div class="card tale-bg">
+                  @endif
 
 
 

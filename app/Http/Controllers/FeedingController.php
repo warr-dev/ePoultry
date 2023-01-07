@@ -20,7 +20,7 @@ class FeedingController extends Controller
         $data = $request->validate([
             'time'=>['required','date_format:H:i'],
             'days.*'=>['required'],
-            'duration'=>['numeric','required']
+            'duration'=>['date_format:H:i:s','required']
         ]);
         if (!isset($data['days']))
             return redirect()->back()->with('message', 'days was required');

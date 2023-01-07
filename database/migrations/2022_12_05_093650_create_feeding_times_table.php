@@ -17,7 +17,7 @@ class CreateFeedingTimesTable extends Migration
             $table->id();
             $table->time('time');
             $table->json('days');
-            $table->decimal('duration');
+            $table->time('duration');
             // $table->string('state', 20);
             $table->boolean('isActive')->default(true);
             $table->timestamps();

@@ -134,7 +134,7 @@
                             <div class="col-md-12 stretch-card">
                                 <div class="form-group w-100">
                                     <label>Duration</label>
-                                    <input type="number" name="duration" class="form-control form-control-sm">
+                                    <input type="text" name="duration" placeholder="HH:mm:ss" class="form-control form-control-sm">
                                 </div>
                             </div>
                         </div>

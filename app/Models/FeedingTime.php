@@ -20,7 +20,7 @@ class FeedingTime extends Model
     ];
 
     public static function isFeedingTime(){
-        $feedtime = self::whereRaw("'".date('H:i:s')."' BETWEEN `time` AND addtime(`time`,`duration`*60)")
+        $feedtime = self::whereRaw("'".date('H:i:s')."' BETWEEN `time` AND addtime(`time`,`duration`)")
             ->whereRaw('JSON_CONTAINS(days, \'["'.date('w').'"]\')')
             ->first();
         if (!$feedtime)
