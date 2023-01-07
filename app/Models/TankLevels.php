@@ -15,7 +15,7 @@ class TankLevels extends Model
 
     public static function isTakeTime()
     {
-        $last=self::orderBy('created_at','desc')->whereRaw('date(`created_at`)','CURRENT_DATE')->first();
+        $last=self::orderBy('created_at','desc')->whereRaw('date(`created_at`) = CURRENT_DATE')->first();
         if(!$last) return true;
         if($last->created_at->addHours(1)<Carbon::now()) return true;
         return false;
