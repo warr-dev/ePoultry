@@ -20,11 +20,24 @@ use Illuminate\Support\Facades\Http;
 
 class ApiController extends Controller
 {
-    public function check()
+    public function feeder(Request $request)
     {
+        $conf = FeedingConf::first();
+        $tank=new TankLevels();
+        $tank->tank='feeder';
+        $tank->level = (($conf->tankheight - $request->level) / $conf->tankheight) * 100;
+        if(TankLevels::isTakeTime()){
+            $tank->save();
+        }
+        
+        if ($tank->level < $conf->maintankcritical)
+        {
+            $sms = $this->semaphore('From: EPoult 
+                The Water tank is now at Critical Level (' . $tank->level . '%). Please refill immediately');
+        }
         return response()->json([
-            // 'date' => date('Y-m-d'),
-            // 'time' => date('H:i:s'),
+            'status' => 'success',
+            'level' => $tank->level,
             'feeding' => FeedingTime::isFeedingTime()
         ]);
     }
@@ -37,12 +50,12 @@ class ApiController extends Controller
             'crit' => $conf->tankcritical,
         ]);
     }
-    public function setFeedingTank(Request $request)
+    public function setFeedingConf(Request $request)
     {
         $conf = FeedingConf::first();
         $conf->update(array_merge($request->all(), ['mode' => 'run']));
         return response()->json([
-            'conf' => $conf,
+            // 'conf' => $conf,
             'status' => 'success'
         ]);
     }
@@ -197,12 +210,12 @@ class ApiController extends Controller
             'fill' => $conf->tankheight - ($conf->tankheight * .7)
         ]);
     }
-    public function setfeedertankheight(Request $request)
-    {
-        $conf = FeedingConf::first();
-        $conf->update(array_merge($request->all(), ['mode' => 'run']));
-        return response()->json([
-            'status' => 'success'
-        ]);
-    }
+    // public function setfeedertankheight(Request $request)
+    // {
+    //     $conf = FeedingConf::first();
+    //     $conf->update(array_merge($request->all(), ['mode' => 'run']));
+    //     return response()->json([
+    //         'status' => 'success'
+    //     ]);
+    // }
 }
