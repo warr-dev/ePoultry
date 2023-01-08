@@ -35,7 +35,7 @@ class FeedingTime extends Model
     public static function feedingDoneToday()
     {
         return self::whereRaw('JSON_CONTAINS(days, \'["'.date('w').'"]\')')
-            ->whereRaw("addtime(`time`,`duration`*60) < '".date('H:i:s'."'"))
+            ->whereRaw("addtime(`time`,`duration`) < '".date('H:i:s'."'"))
             ->count();
     }
 }

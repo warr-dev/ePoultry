@@ -24,8 +24,8 @@
 @endpush
 
 @section('content')
-    <div class="row">
-    
+    <div class="row">    
+      <!-- feeding -->
         <div class="col-md-6 grid-margin stretch-card">
           @if ($lastdht)
             @if ($lastdht->temperature < 20)
@@ -44,40 +44,53 @@
           @else
             <div class="card tale-bg">
           @endif
-
               <div class="card-body" >
-                  <b  ng-style ="font-size:30px;color: #F5F7FF;"> FEEDS</b>
-                  <p class="fs-30 mb-2" >@if ($lastdht){{$lastdht->temperature}} @endif %</p>
-                  <b  style ="font-size:60px; "> 3</b>
+                  <b  ng-style ="font-size:30px;color: #F5F7FF;"> FEEDING</b>
+                  <p class="fs-30 m-2" >
+                    @if($feedingcounts>0)
+                      {{$feedingdone}}/{{$feedingcounts}} ({{($feedingdone/$feedingcounts)*100}}%) done today
+                    @else
+                      no Feeding for today
+                    @endif
+                  </p>
+                  <!-- <b  style ="font-size:60px; "> 3</b> -->
                   <p >Previous Feeding Time : 16:02:00	</p>
                 </div>    
             </div>
         </div>
-     
-        <div class="col-md-6 grid-margin transparent">
-              <div class="row">
-                <div class="col-md-6 mb-4 stretch-card transparent">
-                @if ($lastdht)
-                  @if ($lastdht->humidity < 20)
-                  <div class="card card-bg" style=" background: linear-gradient(to right,#d92525 20%, #F5F7FF 20%); border: 1px solid #e3e3e3;">
-                  @elseif  ($lastdht->humidity  > 20 and  $lastdht->humidity  < 50)      
-                  <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 30%, #F5F7FF 30%); border: 1px solid #e3e3e3;">
-                  @elseif  ($lastdht->humidity  > 50 and  $lastdht->humidity  < 70)      
-                  <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 50%, #F5F7FF 50%); border: 1px solid #e3e3e3;">
-                  @elseif  ($lastdht->humidity  > 70 and  $lastdht->humidity  < 90)      
-                  <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 70%, #F5F7FF 70%); border: 1px solid #e3e3e3;">
-                  @elseif  ($lastdht->humidity  > 90 and  $lastdht->humidity  < 100)      
-                  <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 90%, #F5F7FF 90%); border: 1px solid #e3e3e3;">
-                  @elseif  ($lastdht->humidity  == 100 )      
-                  <div class="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 100%, #F5F7FF 100%); border: 1px solid #e3e3e3;">
-                  @endif
-                  @else
+        <!-- feeding -->
+        <div class="col-md-6 grid-margin stretch-card">
+          @if ($lastdht)
+            @if ($lastdht->temperature < 20)
+              <div class="card tale-bg card-0">
+            @elseif  ($lastdht->temperature  >= 20 &&  $lastdht->temperature  < 40)      
+              <div class="card tale-bg card-20">
+            @elseif  ($lastdht->temperature  >= 40 &&  $lastdht->temperature  < 60)      
+              <div class="card tale-bg card-40">
+            @elseif  ($lastdht->temperature  >= 60 &&  $lastdht->temperature  < 80)      
+              <div class="card tale-bg card-60">
+            @elseif  ($lastdht->temperature  >= 80 &&  $lastdht->temperature  < 100)      
+              <div class="card tale-bg card-80">
+            @elseif  ($lastdht->temperature == 100)      
+              <div class="card tale-bg card-100">
+            @endif
+          @else
+            <div class="card tale-bg">
+          @endif
+              <div class="card-body" >
+                  <b  ng-style ="font-size:30px;color: #F5F7FF;"> WATER</b>
+                  <p class="fs-30 m-2" >
+                    2 Refills today
+                  </p>
+                  <p> last refill : 16:02:00	</p>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <div class="row">
+                <div class="col-md-3 mb-4 stretch-card transparent">
+                
                     <div class="card tale-bg">
-                  @endif
-
-
-
-
                      <div class="card-body" style="color:#030303 ;">
                       <b  style ="font-size:15px;color: #F5F7FF;"> WATER</b>
                     <p class="fs-30 mb-2" >@if ($lastdht){{$lastdht->humidity}} @endif %</p>
@@ -86,15 +99,15 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 mb-4 stretch-card transparent">
+                <div class="col-md-3 mb-4 stretch-card transparent">
                   <div class="card card-dark-blue">
                     <div class="card-body" style="color:#030303 ;">
                       <b  style ="font-size:15px;color: #F5F7FF;"> LIGHT</b><BR></BR>
-                      @if ($lastdht->id == 1)
+                      @if ($lastdht->id??1 == 1)
                       <label style="color: white;margin-left:5%;font-size: 30px;">
                         ON
                       </label>
-                      @elseif ($lastdht->id == 2)
+                      @elseif ($lastdht->id??1 == 2)
                       <label style="color: Red;margin-left:5%;font-size: 30px;">
                         OFF
                       </label>
@@ -102,17 +115,15 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                <div class="col-md-3 mb-4 stretch-card transparent">
                   <div class="card card-light-blue">
                     <div class="card-body" style="color:#030303 ;">
                       <b  style ="font-size:15px;color: #F5F7FF;"> FAN</b><BR></BR>
-                      @if ($lastdht->id == 1)
+                      @if ($lastdht->id??1 == 1)
                       <label style="color: white;margin-left:5%;font-size: 30px;">
                         ON
                       </label>
-                      @elseif ($lastdht->id == 2)
+                      @elseif ($lastdht->id??1 == 2)
                       <label style="color: Red;margin-left:5%;font-size: 30px;">
                         OFF
                       </label>
@@ -121,15 +132,15 @@
                    
                   </div>
                 </div>
-                <div class="col-md-6 stretch-card transparent">
+                <div class="col-md-3 mb-4 stretch-card transparent">
                   <div class="card card-light-danger">
                     <div class="card-body" style="color:#030303 ;">
                       <b  style ="font-size:15px;color: #F5F7FF;"> HEATER</b><BR></BR>
-                      @if ($lastdht->id == 1)
+                      @if ($lastdht->id??1 == 1)
                       <label style="color: white;margin-left:5%;font-size: 30px;">
                         ON
                       </label>
-                      @elseif ($lastdht->id == 2)
+                      @elseif ($lastdht->id??1 == 2)
                       <label style="color: Black;margin-left:5%;font-size: 30px;">
                         OFF
                       </label>
@@ -137,8 +148,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
 
         <!-- <div class="col-md-6 grid-margin transparent">
