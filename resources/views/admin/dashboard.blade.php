@@ -2,51 +2,52 @@
 
 @push('head')
     <style>
-      .card-0{
-        background: linear-gradient(to right,#d92525 0%, #F5F7FF 00%); border: 1px solid #e3e3e3;
+      .card card-tale .card-0{
+        color:black; 
+        background: linear-gradient(to right,#d92525 20%, #F5F7FF 20%); border: 1px solid #e3e3e3;
       }
       .card-20{
         background: linear-gradient(to right,#d92525 20%, #F5F7FF 20%); border: 1px solid #e3e3e3;
       }
       .card-40{
-        background: linear-gradient(to right,#4ccfb9 40%, #F5F7FF 40%); border: 1px solid #e3e3e3;
+        background: linear-gradient(to right,#7DA0FA 40%, #F5F7FF 40%); border: 1px solid #e3e3e3;
       }
       .card-60{
-        background: linear-gradient(to right,#4ccfb9 60%, #F5F7FF 60%); border: 1px solid #e3e3e3;"
+        background: linear-gradient(to right,#7DA0FA 60%, #F5F7FF 60%); border: 1px solid #e3e3e3;"
       }
       .card-80{
-        background: linear-gradient(to right,#4ccfb9 80%, #F5F7FF 80%); border: 1px solid #e3e3e3;
+        background: linear-gradient(to right,#7DA0FA 80%, #F5F7FF 80%); border: 1px solid #e3e3e3;
       }
       .card-100{
-        background: linear-gradient(to right,#4ccfb9 100%, #F5F7FF 100%); border: 1px solid #e3e3e3;
+        background: linear-gradient(to right,#7DA0FA 100%, #F5F7FF 100%); border: 1px solid #e3e3e3;
       }
     </style>
 @endpush
 
 @section('content')
     <div class="row">    
-      <!-- feeding -->
+      <!-- feeding  style=" background: linear-gradient(to right,#7DA0FA 100%, #F5F7FF 100%); border: 1px solid #e3e3e3; -->
         <div class="col-md-6 grid-margin stretch-card">
           @if ($lastdht)
             @if ($lastdht->temperature < 20)
-              <div class="card tale-bg card-0">
+            <div class ="card card-tale" style=" color:black;  background: linear-gradient(to right,#d92525 5%, #f4f6ff 5%); border: 1px solid #e3e3e3;" >
             @elseif  ($lastdht->temperature  >= 20 &&  $lastdht->temperature  < 40)      
-              <div class="card tale-bg card-20">
-            @elseif  ($lastdht->temperature  >= 40 &&  $lastdht->temperature  < 60)      
-              <div class="card tale-bg card-40">
-            @elseif  ($lastdht->temperature  >= 60 &&  $lastdht->temperature  < 80)      
-              <div class="card tale-bg card-60">
-            @elseif  ($lastdht->temperature  >= 80 &&  $lastdht->temperature  < 100)      
-              <div class="card tale-bg card-80">
-            @elseif  ($lastdht->temperature == 100)      
-              <div class="card tale-bg card-100">
-            @endif
-          @else
-            <div class="card tale-bg">
+            <div class ="card card-tale" style=" color:black;  background: linear-gradient(to right,#d92525 20%, #f4f6ff 20%); border: 1px solid #e3e3e3;" >
+          @elseif  ($lastdht->temperature  >= 40 &&  $lastdht->temperature  < 60)      
+          <div class ="card card-tale" style=" color:black;  background: linear-gradient(to right,#58d8a3 40%, #f4f6ff 40%); border: 1px solid #e3e3e3;" >
+          @elseif  ($lastdht->temperature  >= 60 &&  $lastdht->temperature  < 80)      
+          <div class ="card card-tale" style=" color:black;  background: linear-gradient(to right,#58d8a3 60%, #f4f6ff 60%); border: 1px solid #e3e3e3;" >
+          @elseif  ($lastdht->temperature  >= 80 &&  $lastdht->temperature  < 100)      
+          <div class ="card card-tale" style=" color:black;  background: linear-gradient(to right,#58d8a3 80%, #f4f6ff 80%); border: 1px solid #e3e3e3;" >
+           @elseif  ($lastdht->temperature == 100)      
+           <div class ="card card-tale" style=" background: linear-gradient(to right,#58d8a3 100%, #f4f6ff 100%); border: 1px solid #e3e3e3;" >
+          @endif
+  
           @endif
               <div class="card-body" >
-                  <b  ng-style ="font-size:30px;color: #F5F7FF;"> FEEDING</b>
+                  <b  ng-style ="font-size:30px;color: #F5F7FF;"> FEEDING  (@if ($lastdht){{$lastdht->temperature}} @endif %)</b>
                   <p class="fs-30 m-2" >
+                
                     @if($feedingcounts>0)
                       {{$feedingdone}}/{{$feedingcounts}} ({{($feedingdone/$feedingcounts)*100}}%) done today
                     @else
@@ -61,24 +62,24 @@
         <!-- feeding -->
         <div class="col-md-6 grid-margin stretch-card">
           @if ($lastdht)
-            @if ($lastdht->temperature < 20)
-              <div class="card tale-bg card-0">
-            @elseif  ($lastdht->temperature  >= 20 &&  $lastdht->temperature  < 40)      
-              <div class="card tale-bg card-20">
-            @elseif  ($lastdht->temperature  >= 40 &&  $lastdht->temperature  < 60)      
-              <div class="card tale-bg card-40">
-            @elseif  ($lastdht->temperature  >= 60 &&  $lastdht->temperature  < 80)      
-              <div class="card tale-bg card-60">
-            @elseif  ($lastdht->temperature  >= 80 &&  $lastdht->temperature  < 100)      
-              <div class="card tale-bg card-80">
-            @elseif  ($lastdht->temperature == 100)      
-              <div class="card tale-bg card-100">
-            @endif
+            @if ($lastdht->humidity < 20)
+            <div class ="card card-tale" style=" color:black;  background: linear-gradient(to right,#d92525 5%, #f4f6ff 5%); border: 1px solid #e3e3e3;" >
+            @elseif  ($lastdht->humidity  >= 20 &&  $lastdht->humidity  < 40)      
+            <div class ="card card-tale" style=" color:black;  background: linear-gradient(to right,#d92525 20%, #f4f6ff 20%); border: 1px solid #e3e3e3;" >
+            @elseif  ($lastdht->humidity  >= 40 &&  $lastdht->humidity  < 60)      
+            <div class ="card card-tale" style=" color:black;  background: linear-gradient(to right,#7DA0FA 40%, #f4f6ff 40%); border: 1px solid #e3e3e3;" >
+          @elseif  ($lastdht->humidity  >= 60 &&  $lastdht->humidity  < 80)      
+          <div class ="card card-tale" style=" color:black;  background: linear-gradient(to right,#7DA0FA 60%, #f4f6ff 60%); border: 1px solid #e3e3e3;" >
+         @elseif  ($lastdht->humidity  >= 80 &&  $lastdht->humidity  < 100)      
+            <div class ="card card-tale" style=" color:black;  background: linear-gradient(to right,#7DA0FA 80%, #f4f6ff 80%); border: 1px solid #e3e3e3;" >
+          @elseif  ($lastdht->humidity == 100)      
+          <div class ="card card-tale" style=" background: linear-gradient(to right,#7DA0FA 100%, #f4f6ff 100%); border: 1px solid #e3e3e3;" >
+       @endif
           @else
             <div class="card tale-bg">
           @endif
               <div class="card-body" >
-                  <b  ng-style ="font-size:30px;color: #F5F7FF;"> WATER</b>
+                  <b  ng-style ="font-size:30px;color: #F5F7FF;"> WATER  (@if ($lastdht){{$lastdht->humidity}} @endif %)</b>
                   <p class="fs-30 m-2" >
                     2 Refills today
                   </p>
