@@ -36,9 +36,10 @@ class WaterController extends Controller
     }
     public function calibrate()
     {
+        $conf = WaterConf::first();
         if (WaterConf::getmode() !== 'calibrate')
             return redirect()->back();
-        return view('admin.watercalibrate');
+        return view('admin.watercalibrate',compact('conf'));
     }
     
 }

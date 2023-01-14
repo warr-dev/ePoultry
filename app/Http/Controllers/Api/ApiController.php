@@ -300,5 +300,13 @@ class ApiController extends Controller
             ]);
         }
     }
+    public function getwaterconf()
+    {
+        $conf=WaterConf::first();
+        return response()->json([
+            'status'=>'success',
+            'configuration'=>$conf,
+        ]);
+    }
     
 }

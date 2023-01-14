@@ -12,10 +12,12 @@
                         <p>Current Water Level: <span id="water-level"></span>%</p>
                     </div>
                     <div class="col-md-12">
-                        <p>If above value is wrong please calibrate: </p>
+                        <p>If above value is wrong please calibrate:                                                </p>
                         <ul>
                             <li>Clear the waterer until sensor markings then click this <button onclick="set(0)">set 0%</button> <span id="setting0"></span></li>
+                            <li>0% = <span id="val0">{{$conf->waterer0}}</span></li>
                             <li>Fill the waterer then click this <button onclick="set(100)">set 100%</button> <span id="setting100"></span></li>
+                            <li>100% = <span id="val100">{{$conf->waterer100}}</span></li>
                             <li>go <a href="{{route('water')}}">back</a></li>
                         </ul>
                     </div>
@@ -42,10 +44,11 @@
                 if (json?.status == 'success') {
                     $('#setting'+percent).text('setting...')
                     let cmode=setInterval(() => {
-                        fetch('/api/checkwatermode').then(res => res.json())
+                        fetch('/api/getwaterconf').then(res => res.json())
                         .then(json => {
-                            if(json?.mode !=='cal'+percent) {
+                            if(json?.configuration?.mode !=='cal'+percent) {
                                 $('#setting'+percent).text('done')
+                                $('#val'+percent).text(json?.configuration['waterer'+percent])
                                 clearInterval(cmode)
                             } 
                         })
