@@ -14,7 +14,13 @@ class ManureController extends Controller
     }
     public function store(Request $request)
     {
-        Heat::create($request->all());
+        $seconds = $request->seconds;
+        $hours = floor($seconds / 3600);
+        $mins = floor($seconds / 60 % 60);
+        $secs = floor($seconds % 60);
+        Heat::create([
+            'duration'=>sprintf('%02d:%02d:%02d', $hours, $mins, $secs)
+        ]);
         return redirect()->back();
     }
 }

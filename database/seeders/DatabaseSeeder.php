@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
         WaterConf::create([
             'mode'=>'setup',
             'maintankheight'=>20,
-            'dispensertankheight'=>20,
+            // 'dispensertankheight'=>20,
         ]);
         DHTConf::create(['interval' => 30,'critical_temperature'=>30,'critical_humidity'=>85]);
         LightConf::create(['value'=>30]);

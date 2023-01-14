@@ -26,15 +26,17 @@ class ApiController extends Controller
         $tank=new TankLevels();
         $tank->tank='feeder';
         $tank->level = (($conf->tankheight - $request->level) / $conf->tankheight) * 100;
-        if(TankLevels::isTakeTime()){
+        $istime=TankLevels::isTakeTime( $tank->tank);
+        if($istime){
             $tank->save();
+            if ($tank->level < $conf->tankcritical)
+            {
+                $sms = $this->semaphore('From: EPoult 
+                    The Feed tank is now at Critical Level (' . $tank->level . '%). Please refill immediately');
+            }
         }
         
-        if ($tank->level < $conf->maintankcritical)
-        {
-            $sms = $this->semaphore('From: EPoult 
-                The Water tank is now at Critical Level (' . $tank->level . '%). Please refill immediately');
-        }
+        
         return response()->json([
             'status' => 'success',
             'level' => $tank->level,
@@ -59,13 +61,13 @@ class ApiController extends Controller
             'status' => 'success'
         ]);
     }
-    public function checkmode()
+    public function checkWaterMode()
     {
         $conf = WaterConf::first();
         return response()->json([
             'mode' => $conf->mode,
-            'critical' => $conf->dispensertankheight - ($conf->dispensertankheight * ($conf->dispensertankcritical / 100)),
-            'fill' => $conf->dispensertankheight - ($conf->dispensertankheight * .7)
+            'critical' => WaterConf::getWatererCritical(),
+            'full'=>$conf->waterer100-50
         ]);
     }
     public function setmode(Request $request)
@@ -141,7 +143,7 @@ class ApiController extends Controller
 
         if ($data['tank'] == 'main') {
             $conf = WaterConf::first();
-            $data['level'] = (($conf->maintankheight - $data['level']) / $conf->maintankheight) * 100;
+            $data['level'] = WaterConf::setTankLevel($request->level);
             if ($data['level'] < $conf->maintankcritical)
                 $sms = $this->semaphore('From: EPoult 
                  The Water tank is now at Critical Level (' . $data['level'] . '%). Please refill immediately');
@@ -218,4 +220,85 @@ class ApiController extends Controller
     //         'status' => 'success'
     //     ]);
     // }
+    public function getwatererlevel()
+    {
+        $tank = TankLevels::getLatest('waterer');
+        return response()->json([
+            'level'=>$tank->level??0,
+        ]);
+    }
+    public function calwaterer(Request $request)
+    {
+        
+
+    }
+    public function setwatererlevel(Request $request)
+    {
+        $conf=WaterConf::first();
+        // echo $conf->mode;
+        if($conf->mode=='calibrate')
+        {
+            $message = "calibrating";
+            if(TankLevels::isTakeTime('waterer'))
+            {
+                $message = "inserted";
+                TankLevels::create([
+                    'tank'=>'waterer',
+                    'level'=> WaterConf::setLevel($request->level)
+                ]);
+            }
+            else
+            {
+                $message = "updated";
+                $tank = TankLevels::getLatest('waterer');
+                $tank->update([
+                    'level' => WaterConf::setLevel($request->level)
+                ]);
+            }
+            return response()->json([
+                'status'=>'success',
+                'message'=>$message,
+            ]);
+        }
+        else if($conf->mode=='cal0')
+        {
+            $conf->update(['waterer0'=>$request->level,'mode'=>'idle']);
+            return response()->json([
+                'status'=>'success',
+                'message'=>'0 % calibrated',
+            ]);
+        }
+        else if($conf->mode=='cal100')
+        {
+            $conf->update(['waterer100'=>$request->level,'mode'=>'idle']);
+            return response()->json([
+                'status'=>'success',
+                'message'=>'100 % calibrated',
+            ]);
+        }
+        else if($conf->mode=='idle')
+        {
+            return response()->json([
+                'status'=>'success',
+                'message'=>'no action',
+            ]);
+        }
+        else if($conf->mode=='run')
+        {
+            $message = 'not time yet';
+            if(TankLevels::isTakeTime('waterer'))
+            {
+                $message = "inserted";
+                TankLevels::create([
+                    'tank'=>'waterer',
+                    'level'=> WaterConf::setLevel($request->level)
+                ]);
+            }
+            return response()->json([
+                'status'=>'success',
+                'message'=>$message,
+            ]);
+        }
+    }
+    
 }

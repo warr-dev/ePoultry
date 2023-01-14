@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/water', [WaterController::class,'index'])->name('water');
     Route::get('/settingup', [WaterController::class,'setup'])->name('water.settank');
     Route::put('/water', [WaterController::class,'update'])->name('water.update');
+    Route::get('/water/calibrate', [WaterController::class,'calibrate'])->name('water.calibrate');
     Route::get('/fan', [FanController::class,'index'])->name('fan');
     Route::put('/fan/sensor/set',[FanController::class,'setFanConf'])->name('dhtconf.update');
     Route::put('/lightconf', [LightController::class,'update'])->name('lightconf.update');

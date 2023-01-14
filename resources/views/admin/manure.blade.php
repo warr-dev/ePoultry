@@ -26,7 +26,7 @@
                                     <label class="col-sm-3 col-form-label">Seconds</label>
                                     <div class="col-sm-9">
                                         <input type="number" name="seconds"
-                                            class="form-control form-control-sm" max="100" min="1"
+                                            class="form-control form-control-sm" min="1"
                                             step="1" value="15">
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                 <tr>    
                                     <td>{{ $log->created_at->format('Y-m-d') }}</td>
                                     <td>{{ $log->created_at->format('H:i:s') }}</td>
-                                    <td>{{ $log->seconds }}</td>
+                                    <td>{{ $log->duration }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

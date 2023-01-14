@@ -17,9 +17,11 @@ class CreateWaterConfsTable extends Migration
             $table->id();
             $table->string('mode',20)->default('run');
             $table->decimal('maintankheight');
-            $table->decimal('dispensertankheight');
+            // $table->decimal('dispensertankheight');
             $table->integer('maintankcritical')->default(30);
-            $table->integer('dispensertankcritical')->default(30);
+            $table->integer('waterer0')->default(0);
+            $table->integer('waterer100')->default(500);
+            $table->integer('waterercritical')->default(30);
             $table->timestamps();
         });
     }

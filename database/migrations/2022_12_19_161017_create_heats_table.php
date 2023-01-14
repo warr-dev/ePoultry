@@ -15,7 +15,7 @@ class CreateHeatsTable extends Migration
     {
         Schema::create('heats', function (Blueprint $table) {
             $table->id();
-            $table->integer('seconds');
+            $table->time('duration');
             $table->timestamps();
         });
     }

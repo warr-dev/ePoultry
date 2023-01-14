@@ -13,11 +13,16 @@ class TankLevels extends Model
     protected $fillable = ['tank','level'];
 
 
-    public static function isTakeTime()
+    public static function isTakeTime($tank)
     {
-        $last=self::orderBy('created_at','desc')->whereRaw('date(`created_at`) = CURRENT_DATE')->first();
+        $last=self::orderBy('created_at','desc')->whereRaw('date(`created_at`) = CURRENT_DATE')->where('tank',$tank)->first();
         if(!$last) return true;
-        if($last->created_at->addHours(1)<Carbon::now()) return true;
+        if($last->created_at->addHours(1)->format('H')<=Carbon::now()->format('H')) return true;
         return false;
+    }
+
+    public static function getLatest($tank)
+    {
+        return $last=self::orderBy('created_at','desc')->whereRaw('date(`created_at`) = CURRENT_DATE')->where('tank',$tank)->first();
     }
 }

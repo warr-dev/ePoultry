@@ -10,10 +10,10 @@ class Heat extends Model
     use HasFactory;
 
 
-    protected $fillable = ['seconds'];
+    protected $fillable = ['duration'];
 
     public static function isHeating(){
-        $heattime = self::whereRaw("'".date('Y-m-d H:i:s')."' BETWEEN `created_at` AND addtime(`created_at`,`seconds`)")
+        $heattime = self::whereRaw("'".date('Y-m-d H:i:s')."' BETWEEN `created_at` AND addtime(`created_at`,`duration`)")
             ->first();
         if (!$heattime)
             return 1;
