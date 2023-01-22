@@ -25,6 +25,14 @@ class ApiController extends Controller
         $conf = FeedingConf::first();
         $tank=new TankLevels();
         $tank->tank='feeder';
+        if($request->level==0)
+        {
+            return response()->json([
+                'status' => 'error',
+                'message' =>'sensor disconnected',
+                'feeding' => FeedingTime::isFeedingTime()
+            ]);
+        }
         $tank->level = (($conf->tankheight - $request->level) / $conf->tankheight) * 100;
         $istime=TankLevels::isTakeTime( $tank->tank);
         if($istime){
@@ -35,7 +43,6 @@ class ApiController extends Controller
                     The Feed tank is now at Critical Level (' . $tank->level . '%). Please refill immediately');
             }
         }
-        
         
         return response()->json([
             'status' => 'success',
@@ -143,6 +150,13 @@ class ApiController extends Controller
 
         if ($data['tank'] == 'main') {
             $conf = WaterConf::first();
+            if($request->level==0)
+            {
+                return response()->json([
+                    'status' => 'error',
+                    'message' =>'sensor disconnected',
+                ]);
+            }
             $data['level'] = WaterConf::setTankLevel($request->level);
             if ($data['level'] < $conf->maintankcritical)
                 $sms = $this->semaphore('From: EPoult 
