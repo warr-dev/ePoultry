@@ -114,7 +114,7 @@ h1 small {
     </div>
     <script>
         setInterval(() => {
-            fetch('api/checkmode').then(res=>res.json()).then(json=>{
+            fetch('api/checkwatermode').then(res=>res.json()).then(json=>{
                 console.log(json)
                 if(json.mode!=='setup') window.history.back()
             })
