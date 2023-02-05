@@ -55,7 +55,7 @@
                       Keep me signed in
                     </label>
                   </div>
-                  <a href="#" class="auth-link text-black">Forgot password?</a>
+                  <a href="{{ route('password.request') }}" class="auth-link text-black">Forgot password?</a>
                 </div>
                
                 {{-- <div class="text-center mt-4 font-weight-light">
