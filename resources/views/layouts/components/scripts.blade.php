@@ -19,6 +19,14 @@
   <!-- Custom js for this page-->
   <script src="/js/dashboard.js"></script>
   <script src="/js/Chart.roundedBarCharts.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+  
   <!-- End custom js for this page-->
+
+  <script>
+    $(document).ready( function () {
+    $('.dtt').DataTable();
+  } );
+  </script>
 
   @stack('scripts')
