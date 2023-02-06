@@ -21,7 +21,7 @@
                   Add class <code>.table-hover</code>
                 </p> --}}
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="dtt">
                             <thead>
                                 <tr>
                                     <th>Time</th>

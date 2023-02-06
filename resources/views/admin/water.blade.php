@@ -74,7 +74,7 @@
                 <div class="card-body">
                     <div class="card-title">Refill Logs</div>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="dtt">
                             <thead>
                                 <tr>
                                     <th>Date</th>
@@ -101,7 +101,7 @@
                 <div class="card-body">
                     <div class="card-title">Waterer Level Logs</div>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="dtt">
                             <thead>
                                 <tr>
                                     <th>Date</th>
@@ -128,7 +128,7 @@
                 <div class="card-body">
                     <div class="card-title">Water Tank Level Logs</div>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="dtt">
                             <thead>
                                 <tr>
                                     <th>Date</th>
