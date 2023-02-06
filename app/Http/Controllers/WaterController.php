@@ -14,9 +14,9 @@ class WaterController extends Controller
         $conf = WaterConf::first();
         $conf->mode='run';
         $conf->save();
-        $logs = WaterLogs::orderBy('id','desc')->limit(10)->get();
-        $watererLevels = TankLevels::where('tank', 'waterer')->orderBy('id','desc')->limit(10)->get();
-        $tankLevels = TankLevels::where('tank', 'main')->orderBy('id','desc')->limit(10)->get();
+        $logs = WaterLogs::orderBy('id','desc')->get();
+        $watererLevels = TankLevels::where('tank', 'waterer')->orderBy('id','desc')->get();
+        $tankLevels = TankLevels::where('tank', 'main')->orderBy('id','desc')->get();
         $latest = TankLevels::getLatest('waterer');
         return view('admin.water',compact('conf','logs','latest','watererLevels','tankLevels'));
     }

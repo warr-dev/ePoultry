@@ -10,7 +10,7 @@ class FeedingController extends Controller
 {
     public function index()
     {
-        $feedtimes = FeedingTime::orderBy('id','desc')->limit(10)->get();
+        $feedtimes = FeedingTime::orderBy('id','desc')->get();
         $days = array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
         $conf = FeedingConf::first();
         return view('admin.feeding',compact('days','feedtimes','conf'));
