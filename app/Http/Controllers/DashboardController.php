@@ -21,7 +21,8 @@ class DashboardController extends Controller
         $lastrefill=TankLevels::where('tank', 'main')->whereRaw('date(created_at)=' . date('Y-m-d'))->orderBy('id','desc')->first();
         $feedingcounts = FeedingTime::countFeedingToday();
         $feedingdone = FeedingTime::feedingDoneToday();
-        $dhtvalues = HDT::all();
+        $dhtvalues = HDT::limit(10)->orderBy('id','desc')->get(['temperature','humidity','created_at'])->toArray();
+        
         $states = [
             'light'=> LightLogs::orderBy('id', 'desc')->first()->state??'off',
             'fan' => FanLogs::orderBy('id', 'desc')->first()->state??'off',
