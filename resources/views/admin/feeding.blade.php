@@ -27,7 +27,7 @@
                                     <th>Time</th>
                                     <th>Duration</th>
                                     <th>Days</th>
-                                    <th>Active</th>
+                                    {{-- <th>Active</th> --}}
                                     <th></th>
                                 </tr>
                             </thead>
@@ -41,9 +41,9 @@
                                                 {{ $days[$day] }}
                                             @endforeach
                                         </td>
-                                        <td class=" text-center">
+                                        {{-- <td class=" text-center">
                                             <input type="checkbox" @if ($feedtime->isActive) checked @endif>
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <i class="mdi mdi-delete text-danger" onclick="deleteFeedingTime(event)"></i>
                                         </td>
