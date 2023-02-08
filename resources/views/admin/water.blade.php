@@ -86,7 +86,7 @@
                                 @foreach ($logs as $log)
                                 <tr>    
                                     <td>{{ $log->created_at->format('Y-m-d') }}</td>
-                                    <td>{{ $log->created_at->format('H:i:s') }}</td>
+                                    <td>{{ $log->created_at->format('h:i:s A') }}</td>
                                     <td>{{ $log->tank }}</td>
                                 </tr>
                                 @endforeach
@@ -113,7 +113,7 @@
                                 @foreach ($watererLevels as $log)
                                 <tr>    
                                     <td>{{ $log->created_at->format('Y-m-d') }}</td>
-                                    <td>{{ $log->created_at->format('H:i:s') }}</td>
+                                    <td>{{ $log->created_at->format('h:i:s A') }}</td>
                                     <td>{{ $log->level }}</td>
                                 </tr>
                                 @endforeach
@@ -140,7 +140,7 @@
                                 @foreach ($tankLevels as $log)
                                 <tr>    
                                     <td>{{ $log->created_at->format('Y-m-d') }}</td>
-                                    <td>{{ $log->created_at->format('H:i:s') }}</td>
+                                    <td>{{ $log->created_at->format('h:i:s A') }}</td>
                                     <td>{{ $log->level }}</td>
                                 </tr>
                                 @endforeach

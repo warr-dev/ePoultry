@@ -47,3 +47,6 @@ Route::get('/getlightconf',[ApiController::class,'getlightconf']);
 Route::get('/getheatstatus',[ApiController::class,'getheatstatus']);
 
 
+Route::get('/dummy',[ApiController::class,'setDummyData']);
+
+

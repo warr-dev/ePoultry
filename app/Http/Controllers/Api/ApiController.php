@@ -322,5 +322,13 @@ class ApiController extends Controller
             'configuration'=>$conf,
         ]);
     }
+    public function setDummyData(Request $request){
+        HDT::setDummyData($request->start,$request->end);
+        LightLogs::setDummyData($request->start,$request->end);
+        WaterLogs::setDummyData($request->start,$request->end);
+        return response()->json([
+            'status'=>'success',
+        ]);
+    }
     
 }

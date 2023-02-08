@@ -9,6 +9,7 @@ class FanLogs extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'state'
+        'state',
+        'created_at'
     ];
 }

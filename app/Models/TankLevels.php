@@ -10,7 +10,7 @@ class TankLevels extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tank','level'];
+    protected $fillable = ['tank','level','created_at'];
 
 
     public static function isTakeTime($tank)

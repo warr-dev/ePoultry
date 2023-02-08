@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         FeedingConf::truncate();
         User::create([
             'name'=>'administrator',
-            'email'=>'admin@example.com',
+            'email'=>'sweetchild00008@gmail.com',
             'password'=> Hash::make('admin')
         ]);
         FeedingConf::create([
