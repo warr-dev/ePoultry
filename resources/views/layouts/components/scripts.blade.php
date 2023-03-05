@@ -27,6 +27,18 @@
     $(document).ready( function () {
     $('.dtt').DataTable();
   } );
+
+    setInterval(() => {
+      $.ajax({
+        url: "/stat",
+        success: (res) =>{
+            $('#stat-water')[0].style.color=res.water==='connected'?'green':'red'
+            $('#stat-feeder')[0].style.color=res.feeder==='connected'?'green':'red'
+            $('#stat-light')[0].style.color=res.light==='connected'?'green':'red'
+            $('#stat-temperature')[0].style.color=res.temperature==='connected'?'green':'red'
+        }
+      });
+    }, 1000);
   </script>
 
   @stack('scripts')

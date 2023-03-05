@@ -24,6 +24,7 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 Route::middleware(['auth'])->group(function () {
+    Route::get('/stat/{device?}', [DashboardController::class,'stat'])->name('stat');
     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
     Route::get('/feeding', [FeedingController::class,'index'])->name('feeding');
     Route::post('/feeding', [FeedingController::class,'create'])->name('feeding.addtime');
@@ -44,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settings', [SettingsController::class,'index'])->name('settings');
     Route::put('/settings/sms', [SettingsController::class,'update'])->name('smsconf.update');
 });
+
 
 
 require __DIR__.'/auth.php';

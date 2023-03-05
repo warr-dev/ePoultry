@@ -8,8 +8,8 @@
       <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
         <span class="icon-menu"></span>
       </button>
-      {{-- <ul class="navbar-nav mr-lg-2">
-        <li class="nav-item nav-search d-none d-lg-block">
+      <ul class="navbar-nav mx-2">
+        {{-- <li class="nav-item nav-search d-none d-lg-block">
           <div class="input-group">
             <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
               <span class="input-group-text" id="search">
@@ -18,17 +18,29 @@
             </div>
             <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
           </div>
+        </li> --}}
+        <li class="nav-item">
+          <i class="mdi mdi-water display-4" style="color:red" id="stat-water"></i>
         </li>
-      </ul> --}}
+        <li class="nav-item">
+          <i class="mdi mdi-food display-4" style="color:red" id="stat-feeder"></i>
+        </li>
+        <li class="nav-item">
+          <i class="mdi mdi-lightbulb display-4" style="color:red" id="stat-light"></i>
+        </li>
+        <li class="nav-item">
+          <i class="mdi mdi-thermometer display-4" style="color:red" id="stat-temperature"></i>
+        </li>
+      </ul>
       <ul class="navbar-nav navbar-nav-right">
-        {{-- <li class="nav-item dropdown">
-          <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-            <i class="icon-bell mx-0"></i>
+        {{-- <li class="nav-item dropdown"> --}}
+          {{-- <a class="nav-link">
+            <i class=""></i>
             <span class="count"></span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-            <a class="dropdown-item preview-item">
+          </a> --}}
+          {{-- <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown"> --}}
+            {{-- <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p> --}}
+            {{-- <a class="dropdown-item preview-item">
               <div class="preview-thumbnail">
                 <div class="preview-icon bg-success">
                   <i class="ti-info-alt mx-0"></i>
@@ -61,9 +73,9 @@
                 </div>
               </div>
             
-            </a>
-          </div>
-        </li> --}}
+            </a> --}}
+          {{-- </div> --}}
+        {{-- </li> --}}
         <li class="nav-item nav-profile dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
             <img src="/images/faces/user_pic.jpg" alt="profile"/>

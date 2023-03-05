@@ -15,6 +15,7 @@ use App\Models\WaterLogs;
 use App\Models\TankLevels;
 use App\Models\LightConf;
 use App\Models\SMSConf;
+use App\Models\Stats;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -249,6 +250,7 @@ class ApiController extends Controller
     public function setwatererlevel(Request $request)
     {
         $conf=WaterConf::first();
+        Stats::where('device','water')->first()->touch();
         // echo $conf->mode;
         if($conf->mode=='calibrate')
         {

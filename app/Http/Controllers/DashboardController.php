@@ -7,6 +7,7 @@ use App\Models\FeedingTime;
 use Illuminate\Http\Request;
 use App\Models\HDT;
 use App\Models\LightLogs;
+use App\Models\Stats;
 use App\Models\TankLevels;
 
 class DashboardController extends Controller
@@ -40,5 +41,20 @@ class DashboardController extends Controller
                 'watererlevel',
                 'states'
             ));
+    }
+    public function stat($device=null)
+    {
+        if($device){
+            $stat=Stats::checkStat($device);
+            return response()->json([
+                'status'=> $stat?'connected':'disconnected'
+            ]);
+        }
+        $res=[];
+        foreach(Stats::$devices as $device)
+        {
+            $res[$device]=Stats::checkStat($device)?'connected':'disconnected';
+        }
+        return response()->json($res);
     }
 }
