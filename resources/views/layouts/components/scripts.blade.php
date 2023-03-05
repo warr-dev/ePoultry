@@ -33,9 +33,13 @@
         url: "/stat",
         success: (res) =>{
             $('#stat-water')[0].style.color=res.water==='connected'?'green':'red'
+            $('#stat-water')[0].title='Water device is '+res.water
             $('#stat-feeder')[0].style.color=res.feeder==='connected'?'green':'red'
+            $('#stat-feeder')[0].title='Feeder device is '+res.feeder
             $('#stat-light')[0].style.color=res.light==='connected'?'green':'red'
+            $('#stat-light')[0].title='Light device is '+res.light
             $('#stat-temperature')[0].style.color=res.temperature==='connected'?'green':'red'
+            $('#stat-temperature')[0].title='Temperature device is '+res.temperature
         }
       });
     }, 1000);
