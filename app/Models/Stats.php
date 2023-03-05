@@ -17,6 +17,6 @@ class Stats extends Model
     {
         $d=self::where('device',$device)->first();
         $now=Carbon::now();
-        return $now->diffInSeconds($d->updated_at)<=5;
+        return $now->diffInSeconds($d->updated_at)<=8;
     }
 }
