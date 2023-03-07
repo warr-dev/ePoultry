@@ -32,12 +32,71 @@
 
   <script>
     $(document).ready( function () {
-    $('.dtt').DataTable({
+      $.each($('.dtt'), function (indexInArray, el) {
+        const label=el.closest('.card-body').children[0].innerText
+         $(el).DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+          {
+            extend: 'copy',
+            className: 'btn btn-default btn-sm',
+            title:label
+          },
+          {
+            extend: 'csv',
+            className: 'btn btn-success btn-sm',
+            title:label
+          },
+          {
+            extend: 'excel',
+            className: 'btn btn-success btn-sm',
+            title:label
+          },
+          {
+            extend: 'pdf',
+            className: 'btn btn-warning btn-sm',
+            title:label
+          },
+          {
+            extend: 'print',
+            className: 'btn btn-info btn-sm',
+            title:label
+          },
+            // 'copy', 'csv', 'excel', 'pdf', 'print'
         ]
     });
+      });
+    // $(DataTable({
+    //     dom: 'Bfrtip',
+    //     buttons: [
+    //       {
+    //         extend: 'copy',
+    //         className: 'btn btn-default btn-sm',
+    //         title:'printing'
+    //       },
+    //       {
+    //         extend: 'csv',
+    //         className: 'btn btn-success btn-sm',
+    //         title:'printing'
+    //       },
+    //       {
+    //         extend: 'excel',
+    //         className: 'btn btn-success btn-sm',
+    //         title:'printing'
+    //       },
+    //       {
+    //         extend: 'pdf',
+    //         className: 'btn btn-warning btn-sm',
+    //         title:'printing'
+    //       },
+    //       {
+    //         extend: 'print',
+    //         className: 'btn btn-info btn-sm',
+    //         title:'printing'
+    //       },
+    //         // 'copy', 'csv', 'excel', 'pdf', 'print'
+    //     ]
+    // });'.dtt').
   } );
 
     setInterval(() => {
