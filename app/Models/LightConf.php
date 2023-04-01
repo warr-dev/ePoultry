@@ -13,8 +13,9 @@ class LightConf extends Model
 
     public static function isManual()
     {
+        $conf=self::first();
         $latest = HDT::getLatest();
         if (!$latest) return false;
-        else return true;
+        return $latest->temperature<=$conf->critical_temperature;
     }
 }
