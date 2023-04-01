@@ -9,5 +9,12 @@ class LightConf extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['value'];
+    protected $fillable = ['value', 'critical_temperature'];
+
+    public static function isManual()
+    {
+        $latest = HDT::getLatest();
+        if (!$latest) return false;
+        else return true;
+    }
 }

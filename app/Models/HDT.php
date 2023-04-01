@@ -37,4 +37,10 @@ class HDT extends Model
             ]);
         }
     }
+    public static function getLatest()
+    {
+        // return self::latest('created_at')->first();
+        return self::whereRaw("NOW() BETWEEN `created_at` AND addtime(`created_at`,'01:00:00')")
+            ->first();
+    }
 }

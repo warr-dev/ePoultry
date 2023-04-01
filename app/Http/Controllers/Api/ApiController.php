@@ -332,5 +332,12 @@ class ApiController extends Controller
             'status'=>'success',
         ]);
     }
+    public function getlightstat()
+    {
+        return response()->json([
+            'isManual'=>LightConf::isManual()
+        ]);
+        
+    }
     
 }

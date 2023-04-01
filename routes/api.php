@@ -32,6 +32,7 @@ Route::post('/feeder/conf',[ApiController::class,'setfeedertankheight']);
 
 Route::post('/sethdt',[ApiController::class,'sethdt']);
 Route::post('/setlight',[ApiController::class,'setlight']);
+Route::get('/getlightstat',[ApiController::class,'getlightstat']);
 Route::post('/setfan',[ApiController::class,'setfan']);
 Route::get('/getdhtconf',[ApiController::class,'getdhtconf']);
 Route::post('/setwaterlog',[ApiController::class,'setwaterlog']);
