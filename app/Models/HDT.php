@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -40,7 +41,7 @@ class HDT extends Model
     public static function getLatest()
     {
         // return self::latest('created_at')->first();
-        return self::whereRaw("NOW() BETWEEN `created_at` AND addtime(`created_at`,'01:00:00')")
+        return self::whereRaw("'".Carbon::now()->format('Y-m-d H:i:s')."' BETWEEN `created_at` AND addtime(`created_at`,'01:00:00')")
             ->first();
     }
 }
