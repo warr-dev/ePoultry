@@ -1,5 +1,5 @@
 # e-Poultry 
-e-Poultry is a web API to control and monitor data from poultry sensors. It was built using Laravel
+e-Poultry is a web API to control and monitor data from poultry sensors. It was built using Laravel. see also (screens)['/doc/screens.md']
 
 ## Running
 
