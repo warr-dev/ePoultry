@@ -1,3 +1,12 @@
+# auth
+
+## login
+![login](login.png)
+
+## forgot password
+![forgot](forgot.png)
+
+# admin
 ## dashboad
 ![dashboard](dashboard.png)
 - cards for statuses
